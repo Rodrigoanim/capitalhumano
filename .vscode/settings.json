@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "you_ana",
+            "database": ".\\data\\you_ana.db"
+        }
+    ]
+}

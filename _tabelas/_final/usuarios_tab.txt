@@ -1,0 +1,7 @@
+user_id	email	nome	senha	empresa	perfil
+1	roberto@animgrafs.com.br	Roberto Nagano	123#	animgrafs	adm
+2	rodrigo@animgrafs.com.br	rodrigo	5678	animgrafs	adm
+3	thais@animgrafs.com.br	thais	1254	animgrafs	usuario
+4	caio@animgrafs.com.br	caio	1254	animgrafs	usuario
+5	consultoriatsw@gmail.com	Anna Lúcia	2512#	TWS	usuario
+6	cristiane@abic.com.br	Cristiane Monteiro	1701#	ABIC	usuario

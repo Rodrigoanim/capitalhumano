@@ -1,0 +1,77 @@
+---
+description: É um Agente de IA para ajudar o usuario a estudar/internalize/analisar videos do Youtube  Usando: Cursor, Python, Streamlit e SQLite Infra: servidor externo: render.com (cloud).  Instalação usando um disco persistente SSD.  Deploy com github.
+globs: *.py
+---
+banco de dados: /data/you_ana.db
+tabela: usuarios_tab
+"cid","name","type","notnull","dflt_value","pk"
+0,"id","INTEGER",0,"",1
+1,"user_id","INTEGER",1,"",0
+2,"nome","TEXT",1,"",0
+3,"email","TEXT",1,"",0
+4,"senha","TEXT",1,"",0
+5,"perfil","TEXT",1,"",0
+6,"empresa","TEXT",0,"",0
+
+tabela: log_acessos
+"cid","name","type","notnull","dflt_value","pk"
+0,"id","INTEGER",0,"",1
+1,"user_id","INTEGER",1,"",0
+2,"data_acesso","DATE",1,"",0
+3,"programa","TEXT",1,"",0
+4,"acao","TEXT",1,"",0
+5,"hora_acesso","TIME",0,"",0
+
+tabela: youtube_tab
+"cid","name","type","notnull","dflt_value","pk"
+0,"you_id","INTEGER",0,"",1
+1,"titulo","TEXT",1,"",0
+2,"url","TEXT",1,"",0
+3,"autor","TEXT",0,"",0
+4,"user_id","INTEGER",0,"",0
+5,"resumo","TEXT",0,"",0
+6,"insights","TEXT",0,"",0
+7,"contraintuitivo","TEXT",0,"",0
+8,"word_key","TEXT",0,"",0
+9,"tools","TEXT",0,"",0
+10,"sumario","TEXT",0,"",0
+11,"assunto","TEXT",0,"",0
+12,"duration","REAL",0,"",0
+13,"language","TEXT",0,"",0
+
+Fluxo:
+1. main.py - autorização e identificação do usuario logado pela coluna: user_id (tabela: usuarios_tab)
+
+2. url_metadados.py
+Este módulo é a porta de entrada do sistema, responsável por validar URLs, coletar metadados de vídeos do YouTube e gerenciar os registros arquivados. Além disso, fornece uma interface interativa para seleção e gerenciamento de vídeos. 
+Cada usuario (user_id) tem a umas lista de videos seu e proprietária e, que outros não podem acessar. 
+
+path de trabalho: z:\youtube
+
+Modulo 2: video_capture.py
+	apartir da url do yoube este modulo digitaliza o video do youtube. dar opção de salvar na maquina local o video no formato mp4
+	usando o video 
+	extrair audio / imagens frames do video mp4
+	a partir do video exportado mp4 processar e extrai o audio mp3. dar opção de salvar na maquina local.
+
+Modulo 3: 
+	transcribe_audio.py
+	usando o audio produzido pelo modulo 3
+ 	transcrever usando a ferramenta assemblyai (tenho conta dela)
+	pasta de trabalho: z:\youtube\transcricoes
+	exportando no formtao .txt e .vtt (com timecode)
+
+Modulo 4
+	analyzer.py
+	usando a transcrição do modulo 4
+	oferecer opções de:
+	 analisa - resumo / insight / sacada / counterintuitive (contexto/segmento/assunto)
+	exportar analizes - salvar em txt
+	pasta de trabalho: z:\youtube\analises
+
+Modulo 5: chat.py
+
+Atividade: 
+objetivo:quero atigir consistencia e veracidade nas respostas dadas pelo chat.
+como: a partir do transcrição com time code, no formato .vtt, quero que no fim de cada respota do chat, inclua sempre, um link onde o usuario terá um link do youtube, direcionando o trecho onde se encontra o conteudo usado para basear a resposta dada pelo assistente IA.
+
